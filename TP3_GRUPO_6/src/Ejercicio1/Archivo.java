@@ -2,7 +2,9 @@ package Ejercicio1;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Archivo {
@@ -27,31 +29,51 @@ public class Archivo {
 		
 	}
 	
-	public ArrayList<String> leeArchivo() {
-		FileReader entrada;
+	public ArrayList<String> leeArchivo() 
+	{
+		BufferedReader miBuffer = null;
+		String linea = "";
 		ArrayList<String> personas = new ArrayList<>();
 		
-		try {
-			entrada = new FileReader(ruta);
-			BufferedReader miBuffer = new BufferedReader(entrada);
+		try
+		{
+			miBuffer = new BufferedReader(new FileReader(ruta));
 			
-			String linea = "";
-			while(linea != null) {
-				//System.out.println(linea);
+			while(linea != null) 
+			{
 				linea = miBuffer.readLine();
-				personas.add(linea);
 				
+				if(linea != null)
+					personas.add(linea);		
 			}
-			miBuffer.close();
-			entrada.close();
 			
-			return personas;
-			
-		} catch (Exception e) {
-			System.out.println("No se encontro archivo");
+		} 
+		catch (FileNotFoundException e) 
+		{
+			System.out.println(ruta + " no existe");
+			return null;
+		}
+		catch(IOException e)
+		{
+			e.printStackTrace();
+			return null;
+		}
+		finally
+		{
+			if(miBuffer != null)
+			{
+				try 
+				{
+					miBuffer.close();
+				} 
+				catch (IOException e) 
+				{
+					e.printStackTrace();
+				}
+			}
 		}
 		
-		return null;
+		return personas;
 	}
 	
 }
