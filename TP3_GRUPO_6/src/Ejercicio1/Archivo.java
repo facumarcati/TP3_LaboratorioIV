@@ -46,7 +46,6 @@ public class Archivo {
 				if(linea != null)
 					personas.add(linea);		
 			}
-			
 		} 
 		catch (FileNotFoundException e) 
 		{
