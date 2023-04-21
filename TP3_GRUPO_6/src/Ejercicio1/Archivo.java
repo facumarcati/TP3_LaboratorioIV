@@ -1,11 +1,13 @@
 package Ejercicio1;
 
 import java.io.BufferedReader;
+import java.util.StringTokenizer;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.ListIterator;
 
 public class Archivo {
 
@@ -29,11 +31,11 @@ public class Archivo {
 		
 	}
 	
-	public ArrayList<String> leeArchivo() 
+	public ArrayList<Persona> leeArchivo() 
 	{
 		BufferedReader miBuffer = null;
 		String linea = "";
-		ArrayList<String> personas = new ArrayList<>();
+		ArrayList<Persona> personasList = new ArrayList<Persona>();
 		
 		try
 		{
@@ -44,7 +46,19 @@ public class Archivo {
 				linea = miBuffer.readLine();
 				
 				if(linea != null)
-					personas.add(linea);		
+				{
+					StringTokenizer atributosPersona = new StringTokenizer(linea, "-");
+					personasList.add(new Persona(String.valueOf(atributosPersona.nextToken()), String.valueOf(atributosPersona.nextToken()), String.valueOf(atributosPersona.nextToken())));				
+				}
+						
+				
+				if(!personasList.isEmpty()){
+					ListIterator<Persona> it = personasList.listIterator();
+					while (it.hasNext()) {
+						Persona obj = it.next();			
+						System.out.println(obj.toString());
+					}
+				}
 			}
 		} 
 		catch (FileNotFoundException e) 
@@ -72,7 +86,7 @@ public class Archivo {
 			}
 		}
 		
-		return personas;
+		return personasList;
 	}
 	
 }
