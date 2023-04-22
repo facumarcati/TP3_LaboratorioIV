@@ -45,19 +45,18 @@ public class Archivo {
 			{
 				linea = miBuffer.readLine();
 				
-				if(linea != null)
+				if(linea != null && linea.length() > 0)
 				{
 					StringTokenizer atributosPersona = new StringTokenizer(linea, "-");
-					personasList.add(new Persona(String.valueOf(atributosPersona.nextToken()), String.valueOf(atributosPersona.nextToken()), String.valueOf(atributosPersona.nextToken())));				
+					personasList.add(new Persona(String.valueOf(atributosPersona.nextToken()), String.valueOf(atributosPersona.nextToken()), String.valueOf(atributosPersona.nextToken())));
 				}
-						
-				
-				if(!personasList.isEmpty()){
-					ListIterator<Persona> it = personasList.listIterator();
-					while (it.hasNext()) {
-						Persona obj = it.next();			
-						System.out.println(obj.toString());
-					}
+			}
+			
+			if(!personasList.isEmpty()){
+				ListIterator<Persona> it = personasList.listIterator();
+				while (it.hasNext()) {
+					Persona obj = it.next();			
+					System.out.println(obj.toString());
 				}
 			}
 		} 

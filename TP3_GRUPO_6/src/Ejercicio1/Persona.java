@@ -1,5 +1,10 @@
 package Ejercicio1;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.ListIterator;
+import java.util.Set;
+
 public class Persona {
 	@Override
 	public String toString() {
@@ -39,6 +44,43 @@ public class Persona {
 		
 	}
 	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((apellido == null) ? 0 : apellido.hashCode());
+		result = prime * result + ((dni == null) ? 0 : dni.hashCode());
+		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Persona other = (Persona) obj;
+		if (apellido == null) {
+			if (other.apellido != null)
+				return false;
+		} else if (!apellido.equals(other.apellido))
+			return false;
+		if (dni == null) {
+			if (other.dni != null)
+				return false;
+		} else if (!dni.equals(other.dni))
+			return false;
+		if (nombre == null) {
+			if (other.nombre != null)
+				return false;
+		} else if (!nombre.equals(other.nombre))
+			return false;
+		return true;
+	}
+
 	public Persona(String nombre, String apellido, String dni) {
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -62,6 +104,38 @@ public class Persona {
 		else {
 			return false;
 		}
+	}
+	
+	public ArrayList<Persona> sacarDuplicados(ArrayList<Persona> lista){
+		ArrayList<Persona> listaNueva = new ArrayList<>();
 		
+		int cantRepetido = 0;
+		boolean repetido = false;
+		
+		for (int i = 0; i < lista.size(); i++) {
+			cantRepetido = 0;
+			for (int j = 0; j < lista.size(); j++) {
+				if(lista.get(i).equals(lista.get(j))) {
+					cantRepetido++;
+				}
+			}
+			if(cantRepetido == 1) {
+				listaNueva.add(lista.get(i)); // 10
+			}
+			if(cantRepetido > 1) {
+				repetido = false;
+				for (Persona item : listaNueva) {
+					if(lista.get(i).equals(item)) {
+						repetido = true;
+					}
+				}
+				if(repetido == false) {
+					listaNueva.add(lista.get(i));
+				}
+			}
+		}
+		System.out.println(listaNueva.size());
+		
+		return listaNueva;
 	}
 }
