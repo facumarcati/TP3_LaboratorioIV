@@ -10,7 +10,7 @@ import java.util.Set;
 public class Persona {
 	@Override
 	public String toString() {
-		return "Persona [nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + "]";
+		return nombre + "-" + apellido + "-" + dni;
 	}
 
 	private String nombre;
@@ -145,29 +145,32 @@ public class Persona {
 	{	
 		Collections.sort(lista, (Persona p1, Persona p2) -> p1.getApellido().compareTo(p2.getApellido()));
 		
+		return lista;
+	}
+	
+	public ArrayList<Persona> quitarDniInvalidos(ArrayList<Persona> lista)
+	{
 		lista.removeIf(p -> {
 			try
 			{
-			return verificarDniInvalido(p.dni);
+				return verificarDniInvalido(p.dni);
 			}
-			catch(DniInvalido e) {				
+			catch(DniInvalido e) 
+			{				
 				return true;
 			}
 		});
-		
 		
 		return lista;
 	}
 	
 	public ArrayList<Persona> sacarDuplicados2(ArrayList<Persona> lista)
 	{
-		ArrayList<Persona> listaNueva = new ArrayList<>();
-		
 		HashSet<Persona> listaAux = new HashSet<Persona>(lista);
-		listaNueva.addAll(listaAux);
-		System.out.println(listaNueva.size());
+		lista.clear();
+		lista.addAll(listaAux);
 		
-		return listaNueva;
+		return lista;
 	}
 	
 }

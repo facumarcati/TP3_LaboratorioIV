@@ -1,6 +1,7 @@
 package Ejercicio1;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.util.StringTokenizer;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -29,7 +30,6 @@ public class Archivo {
 		}else {
 			return false;
 		}
-		
 	}
 	
 	public ArrayList<Persona> leeArchivo() 
@@ -90,16 +90,23 @@ public class Archivo {
 		return personasList;
 	}
 	
-	public boolean crearArchivo() {
+	public boolean crearNuevoArchivo(ArrayList<Persona> lista) {
 		
 		FileWriter escritura;
 		
 		try {
-			escritura = new FileWriter("Resultado.txt", true);
-			escritura.write("Prueba! \n");
+			escritura = new FileWriter("Resultado.txt", false);
+			BufferedWriter bufferEscritura = new BufferedWriter(escritura);
+			
+			
+			for (int i = 0; i < lista.size(); i++)
+			{
+				bufferEscritura.write(lista.get(i).toString() + "\n");
+			}			
+			
+			bufferEscritura.close();
 			escritura.close();
 			
-			System.out.println("Creado el archivo");
 			
 			return true;
 		}

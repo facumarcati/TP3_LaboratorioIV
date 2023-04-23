@@ -16,21 +16,23 @@ public class Principal {
 		if(archivo.existe())
 			System.out.println("Existe el archivo");
 
-		
 		Persona persona = new Persona();
 		
 		ArrayList<Persona> lista = archivo.leeArchivo();
 		
-		System.out.println("--------------------");
+		System.out.println("---------------------------");
 		
-		ArrayList<Persona> listaNueva = persona.sacarDuplicados2(lista);
-		listaNueva = persona.ordenarLista(listaNueva);
+		lista = persona.sacarDuplicados2(lista);
+		lista = persona.quitarDniInvalidos(lista);
+		lista = persona.ordenarLista(lista);
 		
-		for (Persona item : listaNueva) {
+		for (Persona item : lista) {
 			System.out.println(item);
 		}
 		
-		archivo.crearArchivo();
+		System.out.println("--------------------------");
+		
+		archivo.crearNuevoArchivo(lista);
 		
 	}
 
