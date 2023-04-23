@@ -145,6 +145,17 @@ public class Persona {
 	{	
 		Collections.sort(lista, (Persona p1, Persona p2) -> p1.getApellido().compareTo(p2.getApellido()));
 		
+		lista.removeIf(p -> {
+			try
+			{
+			return verificarDniInvalido(p.dni);
+			}
+			catch(DniInvalido e) {				
+				return true;
+			}
+		});
+		
+		
 		return lista;
 	}
 	

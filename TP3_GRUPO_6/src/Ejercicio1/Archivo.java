@@ -5,6 +5,7 @@ import java.util.StringTokenizer;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.ListIterator;
@@ -87,6 +88,26 @@ public class Archivo {
 		}
 		
 		return personasList;
+	}
+	
+	public boolean crearArchivo() {
+		
+		FileWriter escritura;
+		
+		try {
+			escritura = new FileWriter("Resultado.txt", true);
+			escritura.write("Prueba! \n");
+			escritura.close();
+			
+			System.out.println("Creado el archivo");
+			
+			return true;
+		}
+		catch(IOException e) {
+			e.printStackTrace();
+		}
+		
+		return false;
 	}
 	
 }

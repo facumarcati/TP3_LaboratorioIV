@@ -30,6 +30,8 @@ public class Principal {
 			System.out.println(item);
 		}
 		
+		archivo.crearArchivo();
+		
 	}
 
 }
