@@ -13,13 +13,9 @@ public class Principal {
 		Archivo archivo = new Archivo();
 		archivo.setRuta(ruta);
 		
-		if(archivo.existe()){
-			System.out.println("entró!");
-			//archivo.leeArchivo();
-		}
-		else
-			System.out.println("no entró");
-		
+		if(archivo.existe())
+			System.out.println("Existe el archivo");
+
 		
 		Persona persona = new Persona();
 		
@@ -27,7 +23,8 @@ public class Principal {
 		
 		System.out.println("--------------------");
 		
-		ArrayList<Persona> listaNueva = persona.sacarDuplicados(lista);
+		ArrayList<Persona> listaNueva = persona.sacarDuplicados2(lista);
+		listaNueva = persona.ordenarLista(listaNueva);
 		
 		for (Persona item : listaNueva) {
 			System.out.println(item);

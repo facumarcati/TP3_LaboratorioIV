@@ -1,6 +1,8 @@
 package Ejercicio1;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.ListIterator;
 import java.util.Set;
@@ -134,8 +136,27 @@ public class Persona {
 				}
 			}
 		}
+		//System.out.println(listaNueva.size());
+		
+		return listaNueva;
+	}
+	
+	public ArrayList<Persona> ordenarLista(ArrayList<Persona> lista)
+	{	
+		Collections.sort(lista, (Persona p1, Persona p2) -> p1.getApellido().compareTo(p2.getApellido()));
+		
+		return lista;
+	}
+	
+	public ArrayList<Persona> sacarDuplicados2(ArrayList<Persona> lista)
+	{
+		ArrayList<Persona> listaNueva = new ArrayList<>();
+		
+		HashSet<Persona> listaAux = new HashSet<Persona>(lista);
+		listaNueva.addAll(listaAux);
 		System.out.println(listaNueva.size());
 		
 		return listaNueva;
 	}
+	
 }

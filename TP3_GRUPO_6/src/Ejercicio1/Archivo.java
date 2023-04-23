@@ -48,7 +48,8 @@ public class Archivo {
 				if(linea != null && linea.length() > 0)
 				{
 					StringTokenizer atributosPersona = new StringTokenizer(linea, "-");
-					personasList.add(new Persona(String.valueOf(atributosPersona.nextToken()), String.valueOf(atributosPersona.nextToken()), String.valueOf(atributosPersona.nextToken())));
+					personasList.add(new Persona(String.valueOf(atributosPersona.nextToken()), 
+							String.valueOf(atributosPersona.nextToken()), String.valueOf(atributosPersona.nextToken())));
 				}
 			}
 			
@@ -56,7 +57,7 @@ public class Archivo {
 				ListIterator<Persona> it = personasList.listIterator();
 				while (it.hasNext()) {
 					Persona obj = it.next();			
-					System.out.println(obj.toString());
+					//System.out.println(obj.toString());
 				}
 			}
 		} 
